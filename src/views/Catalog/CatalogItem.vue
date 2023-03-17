@@ -28,8 +28,6 @@
     const reviews_rating = STORE_DB[0].reviews.filter(review => review.item == id).map(review => review.rating);
     console.log(getRating(reviews_rating));
     console.log(reviews_rating);
-
-    // const reviews_rating = []
 </script>
 <template>
     <div v-if="item">
@@ -40,8 +38,17 @@
                     <img :src="item.image" alt="">
                 </div>
                 <div class="product_info">
-                    <h1 class="product_info__price">
-                        ${{item.price}} USD
+                    <h1 v-if="!item.is_sale" class="product_info__price">
+                        {{item.price.toLocaleString(item.currency_locale, {
+                            style: 'currency',
+                            currency: item.currency,
+                        })}}
+                    </h1>
+                    <h1 v-else class="product_info__price sale">
+                        {{Math.floor(item.price - (item.price * item.sale_amount)).toLocaleString(item.currency_locale, {
+                            style: 'currency',
+                            currency: item.currency,
+                        })}}
                     </h1>
                     <h2 class="product_info__title">
                         {{item.name}}
@@ -115,5 +122,8 @@
     }
     .product_info__purchase {
         margin-top: 4em;
+    }
+    .sale {
+        color: #ff1a4f;
     }
 </style>

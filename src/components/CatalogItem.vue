@@ -6,10 +6,16 @@
             </div>
             <div class="categories_item__price">
                 <h3 :style='{color: item.is_sale ? "#ff1a4f" : "black"}' v-if="item.is_sale">
-                    ${{ Math.floor(item.price - (item.price * item.sale_amount)) }} USD <span class="sale_badge">Скидка</span>
+                    {{ Math.floor(item.price - (item.price * item.sale_amount)).toLocaleString(item.currency_locale, {
+                        style: 'currency',
+                        currency: item.currency,
+                    }) }} <span class="sale_badge">Скидка</span>
                 </h3>
                 <h3 v-else>
-                    ${{ item.price }} USD
+                    {{ item.price.toLocaleString(item.currency_locale, {
+                        style: 'currency',
+                        currency: item.currency,
+                    }) }}
                 </h3>
             </div>
             <div class="categories_item__title">

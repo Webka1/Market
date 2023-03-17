@@ -1,6 +1,7 @@
 <script setup>
     import { useRoute } from 'vue-router';
     import STORE_DB from '../../db';
+    import { computed } from 'vue';
 
     import Alert from '../../components/UI/Alert.vue';
     import CatalogItem from '../../components/CatalogItem.vue'
@@ -9,6 +10,7 @@
     const route = useRoute();
     const request_category = route.params.category
 
+    const items = computed(() => STORE_DB[0].items.filter((item) => item.category === request_category))
     const category = STORE_DB[0].categories.filter((category) => category.db_name === request_category)
 
 </script>
@@ -41,8 +43,8 @@
         </div>
         <div class="catalog_categories">
             <div class="catalog_categories__grid">
-                <Alert v-if="STORE_DB[0].items.filter((item) => item.category === request_category).length === 0" alert_type="info" alert_text="Товаров в данной категории нет"/>
-                <CatalogItem v-for="item in STORE_DB[0].items.filter((item) => item.category === request_category)" :item="item"/>
+                <Alert v-if="items.length === 0" alert_type="info" alert_text="Товаров в данной категории нет"/>
+                <CatalogItem v-for="item in items" :item="item"/>
             </div>
         </div>
     </div>
