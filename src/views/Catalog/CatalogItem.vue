@@ -66,7 +66,11 @@
                         <p style="font-size: 14px; margin-top: 5px;">&nbsp;(Отзывов: {{ reviews.length }})</p>
                     </div>
                     <div class="product_info__purchase">
-                        <BUTTON button_type="info" :button_text='"Купить за $" + item.price + " USD"'/>
+                        <BUTTON v-if="!item.is_sale" button_type="info" :button_text='"Купить за $" + item.price + " USD"'/>
+                        <BUTTON v-else button_type="info" :button_text='"Купить за " + Math.floor(item.price - (item.price * item.sale_amount)).toLocaleString(item.currency_locale, {
+                            style: "currency",
+                            currency: item.currency,
+                        }) '/>
                     </div>
                 </div>
             </div>

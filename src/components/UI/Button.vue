@@ -8,12 +8,17 @@
         button_text: {
             type: String,
             required: true
+        },
+        button_size: {
+            type: String,
+            required: false,
+            default: 'normal'
         }
     })
 
 </script>
 <template>
-    <div :class="'button ' + button_type ">
+    <div :class="'button ' + button_type + ' ' + button_size ">
         {{ button_text }}
     </div>
 </template>
@@ -30,6 +35,10 @@
         font-size: 16px;
         padding: 1em;
         text-align: center;
+    }
+    .small {
+        font-size: 14px;
+        padding: 0.5em;
     }
     .info {
         background: #1453fe;
