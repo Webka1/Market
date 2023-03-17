@@ -10,8 +10,7 @@
     const request_category = route.params.category
 
     const category = STORE_DB[0].categories.filter((category) => category.db_name === request_category)
-    // const category = STORE_DB[0].categories.filter((category) => category.db_name === request_category)[0].name
-    console.log(category.length)
+
 </script>
 <template>
     <div v-if="category.length === 0">
@@ -36,6 +35,9 @@
             <div class="catalog_categories__title">
                 <h2>{{ category[0].name }}</h2>
             </div>
+        </div>
+        <div class="catalog_filter">
+            Тут будет фильтр
         </div>
         <div class="catalog_categories">
             <div class="catalog_categories__grid">
