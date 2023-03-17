@@ -1,0 +1,141 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+
+main {
+  background: transparent;
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+.navigation {
+  padding-top: 2em;
+  border-right: 1px solid #e2e2e2;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-weight: bold;
+}
+.navigation_logo {
+  padding-left: 2em;
+  padding-right: 2em;
+  color: #1453fe;
+}
+.navigation_logo span {
+  color: black;
+}
+.container {
+  padding: 2em;
+  padding-left: 4em;
+  width: 100%;
+  overflow: auto;
+}
+.navigation_menu {
+  margin-top: 2em;
+  display: flex;
+  flex-direction: column;
+}
+.navigation_menu__item {
+  padding: 1em;
+  transition: 100ms;
+  cursor: pointer;
+}
+.navigation_menu__item p {
+  text-decoration: none;
+  font-weight: normal;
+  color: lightslategray;
+  transition: 100ms;
+  padding-left: 2em;
+}
+.navigation_menu__item:hover {
+  background: #f2f4f7;
+}
+.navigation_menu__item:hover p {
+  color: #1453fe;
+}
+
+.navigation_menu .active {
+  background: #f2f4f7;
+}
+
+.navigation_menu .active p {
+  color: #0044ff;
+}
+
+
+.return_block {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  grid-gap: 1em;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+._ {
+  transform: rotate(180deg);
+}
+.return_arrow {
+  font-size: 20px;
+  font-weight: bold;
+  color: gray;
+}
+.return_title {
+  font-weight: bold;
+  font-size: 20px;
+}
+.return_subtitle {
+  color: lightslategray;
+  font-size: 14px;
+}
+.product {
+  margin-top: 3em;
+}
+.product_main {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-gap: 4em;
+}
+.product_image img {
+  width: 100%;
+  border-radius: 15px;
+}
+.product_info__title {
+  margin-top: 1em;
+  margin-bottom: .5em;
+}
+.product_info__rating {
+  font-size: 20px;
+  color: #1453fe;
+  display: flex;
+  align-items: center;
+}
+.product_info__purchase {
+  margin-top: 4em;
+}
+.product_info__purchase button {
+  transition: 100ms;
+  cursor: pointer;
+  width: 100%;
+  border: none;
+  border-radius: 7px;
+  background-color: #1453fe;
+  color: #fff;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 1em;
+}
+.product_info__purchase button:hover {
+  background: #0044ff;
+}
+.product_second {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-gap: 2em;
+  margin-top: 4em;
+}
+.product_description p {
+  margin-top: 1em;
+}
