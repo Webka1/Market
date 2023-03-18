@@ -14,44 +14,38 @@
     const items = ref(STORE_DB[0].items.filter((item) => item.category === request_category).sort((a, b) => b.id - a.id))
     const category = STORE_DB[0].categories.filter((category) => category.db_name === request_category)
 
-
     const current_filter = ref(null)
     const filters = ref({
         price: {
             price_up: {
                 name: 'price_up',
                 icon: 'fa-arrow-up',
-                is_price: true,
-                is_sale: false,
+                type: 'price',
                 sort: (a, b) => a.price - b.price
             },
             price_down: {
                 name: 'price_down',
                 icon: 'fa-arrow-down',
-                is_price: true,
-                is_sale: false,
+                type: 'price',
                 sort: (a, b) => b.price - a.price
             },
         },
         date: {
             date_newest: {
                 name: 'date_newest',
-                icon: 'Сначала новые',
-                is_price: false,
-                is_date: true,
-                sort: (a, b) => a.date - b.date
+                icon: 'fa-arrow-up',
+                type: 'date',
+                sort: (a, b) => a.added - b.added
             },
             date_oldest: {
                 name: 'date_oldest',
-                icon: 'Сначала старые',
-                is_price: false,
-                is_date: true,
-                sort: (a, b) => b.date - a.date
+                icon: 'fa-arrow-down',
+                type: 'date',
+                sort: (a, b) => b.added - a.added
             }
         },
         default: {
             name: 'default',
-            icon: 'fa-arrow-up',
             sort: (a, b) => b.id - a.id
         }
     })
@@ -64,15 +58,28 @@
         }
     })
 
+    const set_date_filter = computed(() => {
+        if (current_filter.value === filters.value.date.date_newest) {
+            return filters.value.date.date_oldest
+        } else {
+            return filters.value.date.date_newest
+        }
+    })
+
     const setFilter = (filter) => {
         current_filter.value = filter
 
         if(current_filter.value === null) {
             current_filter.value = filters.value.default
+            items.value = items.value.sort((a, b) => b.id - a.id)
         } else if(current_filter.value === filters.value.price.price_up) {
             items.value = items.value.sort((a, b) => a.price - b.price)
         } else if(current_filter.value === filters.value.price.price_down) {
             items.value = items.value.sort((a, b) => b.price - a.price)
+        } else if(current_filter.value === filters.value.date.date_newest) {
+            items.value = items.value.sort((a, b) => new Date(a.added) - new Date(b.added))
+        } else if(current_filter.value === filters.value.date.date_oldest) {
+            items.value = items.value.sort((a, b) => new Date(b.added) - new Date(a.added))
         }
 
         console.log(current_filter.value)
@@ -105,11 +112,20 @@
         <div v-if="items.length > 1" class="catalog_filter">
             <div @click="setFilter(set_price_filter)" class="catalog_filter__item" :class='[
                 current_filter === null 
-                ? "" : current_filter.is_price ? "filter_active" : ""
-            ]'>
+                    ? "" : current_filter.type === "price" ? "filter_active" : ""
+                ]'>
                 По цене <i class="fa-solid" :class='[
                     current_filter === null 
-                        ? "" : current_filter.is_price ? current_filter.icon : ""
+                        ? "" : current_filter.type === "price" ? current_filter.icon : ""
+                ]'></i>
+            </div>
+            <div @click="setFilter(set_date_filter)" class="catalog_filter__item" :class='[
+                current_filter === null 
+                    ? "" : current_filter.type === "date" ? "filter_active" : ""
+                ]'>
+                По дате <i class="fa-solid" :class='[
+                    current_filter === null 
+                        ? "" : current_filter.type === "date" ? current_filter.icon : ""
                 ]'></i>
             </div>
             <div v-if="current_filter" class="catalog_filter__item">
@@ -132,6 +148,7 @@
         flex-wrap: wrap;
         /* make auto height cards */
         align-items: flex-start;
+        justify-content: space-between;
     }
     .catalog_cover {
         border-radius: 10px;
@@ -165,7 +182,6 @@
         display: flex;
         align-items: center;
         grid-gap: 1em;
-        justify-content: space-between;
         margin-bottom: 2em;
     }
 </style>

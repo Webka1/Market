@@ -33,6 +33,10 @@
         },
     })
     
+
+    const test = (res) => {
+        console.log(res)
+    }
 </script>
 <style scoped>
     .catalog_categories__link {

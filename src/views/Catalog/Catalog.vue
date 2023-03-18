@@ -43,6 +43,7 @@
         flex-wrap: wrap;
         /* make auto height cards */
         align-items: flex-start;
+        justify-content: space-between;
     }
     .catalog_categories {
         margin-bottom: 4em;

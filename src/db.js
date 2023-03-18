@@ -1,5 +1,6 @@
 const db = [
     // это типо БД. Пи***ец как сложно с этим массивом работать, но я не хочу делать серверную часть :)
+    // дата DD.MM.YYYY
     {
         categories: [
             {
@@ -41,7 +42,7 @@ const db = [
                 id: 1,
                 name: "Soda Can Mockup",
                 category: "3d-mockups",
-                added: "01.03.2023",
+                added: "01.29.2023",
                 seller: 1,
                 price: 14,
                 currency: "RUB",
@@ -55,7 +56,7 @@ const db = [
                 id: 2,
                 name: "Soda Can Mockup 2",
                 category: "3d-mockups",
-                added: "01.03.2023",
+                added: "02.12.2023",
                 seller: 2,
                 price: 7,
                 currency:"USD",
@@ -69,7 +70,7 @@ const db = [
                 id: 3,
                 name: "Soda Can Mockup 2",
                 category: "3d-mockups",
-                added: "02.03.2023",
+                added: "02.28.2023",
                 seller: 2,
                 price: 5,
                 currency:"USD",
@@ -83,7 +84,7 @@ const db = [
                 id: 4,
                 name: "Soda Can Mockup 2",
                 category: "3d-mockups",
-                added: "02.03.2023",
+                added: "07.03.2023",
                 seller: 2,
                 price: 121,
                 currency:"USD",
@@ -97,7 +98,7 @@ const db = [
                 id: 5,
                 name: "2 Floating iPhones Mockup",
                 category: "2d-mockups",
-                added: "03.03.2023",
+                added: "12.01.2023",
                 seller: 2,
                 price: 5,
                 currency:"USD",
@@ -111,7 +112,7 @@ const db = [
                 id: 6,
                 name: "2 Floating iPhones Mockup",
                 category: "3d-mockups",
-                added: ".02.2023",
+                added: "11.02.2023",
                 seller: 2,
                 price: 18,
                 currency:"USD",
