@@ -21,8 +21,6 @@
 
 </script>
 <style scoped>
-
-    /* class nofound align center vertically */
     .notfound {
         width: fit-content;
 
